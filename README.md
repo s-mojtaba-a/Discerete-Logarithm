@@ -1,1 +1,0 @@
-# Discerete-Logarithm
