@@ -52,7 +52,7 @@ T solve(T a, T b, T m)
     for (T p = 1, cur = k; p <= n; p++)
     {
         cur = (cur * 1ll * an) % m;
-        if (vals.count(cnt))
+        if (vals.count(cur))
         {
             T ans = n * p - vals[cur] + add;
             return ans;
