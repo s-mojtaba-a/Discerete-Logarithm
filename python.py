@@ -45,6 +45,11 @@ class DL:
         ''' it returns the smallest x  '''
         a %= m
         b %= m
+        if a==0 : # if you remove this line, then 0**0 will assume to be equal to 1
+        if b==0 :
+            return 1
+        else:
+            return -1
         n = int(sqrt(m))+1
         k, add = self.find_add_and_k(a, b, m)
         if add == -1:
