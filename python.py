@@ -32,47 +32,35 @@ class DL:
         while (gcd(a, m) > 1):
             g = gcd(a, m)
             if b == k:
-                return (-1, add)
+                return (b, m, -1, add)
             if b % g:
-                return (-1, -1)
+                return (b, m, -1, -1)
             b //= g
             m //= g
-            k = k*(a/g) % m
+            k = (k*a//g) % m
             add += 1
-        return (k, add)
+        return (b, m, k, add)
 
     def solve(self, a, b, m):
         ''' it returns the smallest x  '''
         a %= m
         b %= m
-        if a==0 : # if you remove this line, then 0**0 will assume to be equal to 1
-        if b==0 :
-            return 1
-        else:
-            return -1
-        n = int(sqrt(m))+1
-        k, add = self.find_add_and_k(a, b, m)
-        if add == -1:
-            return -1
+        if (a == 0):
+            if b == 0:
+                return 1
+            else:
+                return -1
+        b, m, k, add = self.find_add_and_k(a, b, m)
         if k == -1:
             return add
+        n = int(sqrt(m))+1
         self.find_q(a, b, m, n)
         an = self.power(a, n, m)
         temp = k*an
         for p in range(1, n+1):
             if self.Q.get(temp, None) != None:
-                return ((p*n-self.Q[temp]+add) % m+m) % m
+                return p*n-self.Q[temp]+add
             temp = temp*an % m
         return -1
 
 
-solver = DL()
-while True:
-    a, m, b = map(int, input().split())
-    if a == b == m == 0:
-        break
-    ans = solver.solve(a, b, m)
-    if ans == -1:
-        print('No Solution')
-    else:
-        print(ans)
