@@ -28,6 +28,8 @@ template <typename T>
 T solve(T a, T b, T m)
 {
     a %= m, b %= m;
+    if (a==0)
+        return b==0? 1: -1 ;
     T k = 1, add = 0, g;
     while ((g = __gcd(a, m)) > 1)
     {
